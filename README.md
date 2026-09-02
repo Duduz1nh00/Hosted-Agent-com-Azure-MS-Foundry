@@ -6,8 +6,6 @@ A solução utiliza **Python (Flask)** para processar as requisições e faz cha
 
 ---
 
-## 📐 Arquitetura do Fluxo
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -17,7 +15,7 @@ sequenceDiagram
     participant Model as Azure OpenAI (gpt-5-nano)
 
     Client->>Gateway: POST /protocols/openai/responses (com Bearer Token)
-    Note over Gateway: Autenticação Entra ID & Roteamento via AgenticApplication
+    Note over Gateway: Autenticação Entra ID e Roteamento via AgenticApplication
     Gateway->>ACA: Encaminha Requisição (mTLS / Internal Ingress)
     Note over ACA: Flask App processa a requisição
     ACA->>Model: Chamada via SDK usando System-Assigned Managed Identity
@@ -26,8 +24,10 @@ sequenceDiagram
     ACA-->>Gateway: Formata e envia resposta JSON (output_text)
     Gateway-->>Client: HTTP 200 OK
 
+```
 
 ---
+
 ## 🏗️ Arquitetura da Solução
 
 1. **Aplicação (Hosted Agent):** API Flask conteinerizada exposta via HTTPS na rota `/protocols/openai/responses`.
@@ -37,6 +37,7 @@ sequenceDiagram
 5. **Gateway de IA:** Roteamento via `AgenticApplication` do Azure AI Foundry REST API (`api-version=2026-05-15-preview`).
 
 ---
+
 ### 2. Pré-requisitos
 
 Adicione esta seção logo antes de **Como Implantar** no seu `README.md`:
