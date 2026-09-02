@@ -38,9 +38,7 @@ sequenceDiagram
 
 ---
 
-### 2. Pré-requisitos
-
-Adicione esta seção logo antes de **Como Implantar** no seu `README.md`:
+Pré-requisitos
 
 ```markdown
 ## 📋 Pré-requisitos
