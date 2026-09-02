@@ -41,7 +41,7 @@ sequenceDiagram
 Pré-requisitos
 
 ```markdown
-## 📋 Pré-requisitos
+📋 Pré-requisitos
 
 Antes de iniciar a implantação, certifique-se de possuir:
 
@@ -53,13 +53,7 @@ Antes de iniciar a implantação, certifique-se de possuir:
   * Projeto e Recurso no **Azure AI Foundry** com o modelo `gpt-5-nano` implantado.
   * **Azure Container Registry (ACR)** configurado.
 * **PowerShell 7+** ou **Bash**: Para execução dos scripts de automação.
-## 🛠️ Tecnologias Utilizadas
 
-* **Linguagens e Frameworks:** Python 3.10, Flask
-* **Azure SDKs:** `azure-ai-projects`, `azure-identity`
-* **Nuvem & Infraestrutura:** Azure Container Apps, Azure Container Registry (ACR), Azure AI Foundry
-* **Segurança:** Azure RBAC, System-Assigned Managed Identity, Entra ID
-* **Automação:** Azure CLI, PowerShell
 
 ---
 
