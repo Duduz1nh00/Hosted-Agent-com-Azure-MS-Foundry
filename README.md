@@ -26,6 +26,7 @@ sequenceDiagram
     ACA-->>Gateway: Formata e envia resposta JSON (output_text)
     Gateway-->>Client: HTTP 200 OK
 
+
 ---
 ## 🏗️ Arquitetura da Solução
 
