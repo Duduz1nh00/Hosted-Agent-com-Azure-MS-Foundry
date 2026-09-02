@@ -27,6 +27,7 @@ sequenceDiagram
     Model-->>ACA: Retorna resposta gerada pelo gpt-5-nano
     ACA-->>Gateway: Formata e envia resposta JSON (output_text)
     Gateway-->>Client: HTTP 200 OK
+```
 
 🛠️ Tecnologias Utilizadas
 
