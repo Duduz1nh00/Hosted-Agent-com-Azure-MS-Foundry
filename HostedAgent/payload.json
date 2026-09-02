@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "kind": "CustomContainer",
+    "agents": [
+      {
+        "name": "agnttest",
+        "properties": {
+          "containerAppResourceId": "/subscriptions/9e9bcccd-4d47-45a5-a339-2373990bca1c/resourceGroups/DefaultResourceGroup-WUS/providers/Microsoft.App/containerApps/agnttest"
+        }
+      }
+    ]
+  }
+}
