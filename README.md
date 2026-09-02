@@ -6,6 +6,27 @@ A solução utiliza **Python (Flask)** para processar as requisições e faz cha
 
 ---
 
+## 📐 Arquitetura do Fluxo
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Client as Cliente / App
+    participant Gateway as Azure AI Foundry Gateway
+    participant ACA as Azure Container Apps (agnttest)
+    participant Model as Azure OpenAI (gpt-5-nano)
+
+    Client->>Gateway: POST /protocols/openai/responses (com Bearer Token)
+    Note over Gateway: Autenticação Entra ID & Roteamento via AgenticApplication
+    Gateway->>ACA: Encaminha Requisição (mTLS / Internal Ingress)
+    Note over ACA: Flask App processa a requisição
+    ACA->>Model: Chamada via SDK usando System-Assigned Managed Identity
+    Note over Model: Valida RBAC: Cognitive Services OpenAI User
+    Model-->>ACA: Retorna resposta gerada pelo gpt-5-nano
+    ACA-->>Gateway: Formata e envia resposta JSON (output_text)
+    Gateway-->>Client: HTTP 200 OK
+
+---
 ## 🏗️ Arquitetura da Solução
 
 1. **Aplicação (Hosted Agent):** API Flask conteinerizada exposta via HTTPS na rota `/protocols/openai/responses`.
@@ -15,7 +36,23 @@ A solução utiliza **Python (Flask)** para processar as requisições e faz cha
 5. **Gateway de IA:** Roteamento via `AgenticApplication` do Azure AI Foundry REST API (`api-version=2026-05-15-preview`).
 
 ---
+### 2. Pré-requisitos
 
+Adicione esta seção logo antes de **Como Implantar** no seu `README.md`:
+
+```markdown
+## 📋 Pré-requisitos
+
+Antes de iniciar a implantação, certifique-se de possuir:
+
+* **Conta Azure Ativa**: Com permissões para criar e gerenciar recursos (`Contributor` / `Owner`).
+* **Azure CLI (v2.60+)**: Instalada e autenticada (`az login`).
+* **Docker Desktop**: Instalado e em execução para construção das imagens de container.
+* **Recursos Provisionados no Azure**:
+  * Assinatura Azure com acesso liberado aos serviços de IA.
+  * Projeto e Recurso no **Azure AI Foundry** com o modelo `gpt-5-nano` implantado.
+  * **Azure Container Registry (ACR)** configurado.
+* **PowerShell 7+** ou **Bash**: Para execução dos scripts de automação.
 ## 🛠️ Tecnologias Utilizadas
 
 * **Linguagens e Frameworks:** Python 3.10, Flask
